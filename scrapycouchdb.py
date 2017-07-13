@@ -1,6 +1,6 @@
 import couchdb
 from scrapy.conf import settings
-from scrapy import log
+import logging
 import datetime
 
 class CouchDBPipeline(object):
@@ -36,7 +36,6 @@ class CouchDBPipeline(object):
                         change = True
         if change:
             self.db.save(data)
-            log.msg("Item wrote to CouchDB database %s/%s" %
-                    (settings['COUCHDB_SERVER'], settings['COUCHDB_DB']),
-                    level=log.DEBUG, spider=spider)  
+            logging.debug("Item wrote to CouchDB database %s/%s" %
+                    (COUCHDB_SERVER, COUCHDB_DB))
         return item
